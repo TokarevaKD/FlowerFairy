@@ -3,6 +3,7 @@ from flask_session import Session
 import sqlite3
 
 
+
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 app.config['SESSION_TYPE'] = 'filesystem'
