@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>FlowerFairy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .cart-icon {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .cart-icon img {
+            width: 36px;
+            height: 36px;
+        }
+
+        .add-to-cart-btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            margin-top: 10px;
+            border-radius: 20px;
+            background: linear-gradient(to right, #877ac5, #d189d4);
+            color: white;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+    </div>
+
+    <div class="cart-icon">
+        <a href="{{ url_for('cart') }}">
+            <img src="{{ url_for('static', filename='images/cart.png') }}" alt="Корзина">
+        </a>
+    </div>
+    
+
+    <nav class="navbar">
+        <a href="{{ url_for('about') }}" class="nav-button {% if request.endpoint == 'about' %}active{% endif %}">О нас</a>
+        <a href="{{ url_for('index') }}" class="nav-button {% if request.endpoint == 'index' %}active{% endif %}">Главная</a>
+        <a href="{{ url_for('contacts') }}" class="nav-button {% if request.endpoint == 'contacts' %}active{% endif %}">Контакты</a>
+    </nav>
+
+
+    <div class="products">
+        {% for flower in flowers %}
+        <div class="product-card">
+            <img src="{{ url_for('static', filename=flower.image) }}" alt="{{ flower.name }}">
+            <p class="product-name">{{ flower.name }}</p>
+            <p class="product-price">{{ flower.price }} ₽</p>
+            <a href="{{ url_for('add_to_cart', flower_id=flower.id) }}" class="add-to-cart-btn">Добавить в корзину</a>
+        </div>
+        {% endfor %}
+    </div>
+
+<section class="order-form-section" style="margin-top: 70px; padding: 70px; background: linear-gradient(to right, #f7e5f7, #e8d3f5); border-radius: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+    <div id="success-message" style="display: {% if success %}block{% else %}none{% endif %}; text-align:center; color: green; font-size: 20px;">
+        Ваш заказ принят! &lt;3
+    </div>
+
+    <div id="order-form" style="display: {% if success %}none{% else %}block{% endif %};">
+        <h2 style="text-align: center; color: #6a4caf; font-size: 45px; margin-bottom: 50px;">Форма заказа</h2>
+        <form action="{{ url_for('submit_order') }}" method="post" style="display: flex; flex-direction: column; gap: 15px;">
+            <input type="text" name="bouquet_name" placeholder="Название букета" required>
+            <input type="datetime-local" name="delivery_time" required>
+            <input type="text" name="address" placeholder="Адрес доставки или самовывоз" required>
+            <input type="text" name="sender_name" placeholder="Имя заказчика и контактный номер телефона" required>
+            <input type="text" name="recipient_name" placeholder="Имя получателя и контактный номер телефона" required>
+            <textarea name="card_message" placeholder="Текст для открытки (по желанию)"></textarea>
+            <button type="submit" class="add-to-cart-btn" style="align-self: center; font-size: 18px; padding: 14px 28px;">Оформить заказ</button>
+        </form>
+    </div>
+</section>
+
+{% if success %}
+<script>
+    // После 7 секунд снова появляется форма заказа
+    setTimeout(function() {
+        document.getElementById('success-message').style.display = 'none';
+        document.getElementById('order-form').style.display = 'block';
+    }, 7000);
+</script>
+{% endif %}
+
+
+
+<section style="display: flex; flex-wrap: wrap; margin-top: 60px; padding: 30px; background: #f9f0ff; border-radius: 50px; gap: 20px;">
+    <!-- Карта с меткой -->
+    <div style="flex: 1 1 50%; min-width: 300px;">
+        <iframe
+    src="https://www.google.com/maps?q=Большая+Сухаревская+пл.,+1%2F2+С1,+Москва,+129090&output=embed"
+    width="100%" height="500" frameborder="0" style="border-radius: 15px;" allowfullscreen>
+</iframe>
+
+    </div>
+
+    <!-- Адрес и маршрут -->
+    <div style="flex: 1 1 40%; min-width: 280px;margin-top: 100px;">
+        <h2 style="color: #6a4caf;">Наш адрес</h2>
+        <p><strong>Большая Сухаревская пл., 1/2 С1, Москва, 129090</strong></p>
+
+        <h3 style="margin-top: 70px;">Как добраться до нас</h3>
+        <p>
+            Мы находимся в 3 минутах пешком от станции метро <strong>Сухаревская</strong> (оранжевая линия). <br>
+            Выходите из метро к Сретенскому бульвару, поверните налево, дойдите до перекрёстка с Большой Сухаревской площадью, 
+            здание будет на углу напротив аптеки.
+        </p>
+    </div>
+</section>
+
+</body>
+
+<footer style="background: linear-gradient(to right, #f0e4ff, #e2d1f5); padding: 40px 20px; margin-top: 60px; border-top-left-radius: 30px; border-top-right-radius: 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+        
+        <!-- Контактная информация -->
+        <div style="flex: 1 1 300px;">
+            <h3 style="color: #6a4caf;">Контакты</h3>
+            <p><strong>Адрес:</strong> Большая Сухаревская пл., 1/2 С1, Москва</p>
+            <p><strong>Телефон:</strong> <a href="tel:+79001234567" style="color: #6a4caf; text-decoration: none;">+7 (900) 123-45-67</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@flowerfairy.ru" style="color: #6a4caf; text-decoration: none;">info@flowerfairy.ru</a></p>
+            <p><strong>Время работы:</strong> ежедневно с 9:00 до 21:00</p>
+        </div>
+
+       
+    </div>
+    <p style="text-align: center; margin-top: 30px; color: #8b72c2;">© 2025 FlowerFairy — Все права защищены</p>
+</footer>
+
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакты</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="contacts-body">
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="FlowerFairy Logo">
+        </div>
+        <nav class="navbar">
+            <a href="{{ url_for('about') }}" class="nav-button {% if request.endpoint == 'about' %}active{% endif %}">О нас</a>
+            <a href="{{ url_for('index') }}" class="nav-button {% if request.endpoint == 'index' %}active{% endif %}">Главная</a>
+            <a href="{{ url_for('contacts') }}" class="nav-button {% if request.endpoint == 'contacts' %}active{% endif %}">Контакты</a>
+        </nav>
+    
+    </header>
+
+    <main>
+        <div class="contacts-card">
+            <h2>Свяжитесь с нами</h2>
+            <p>Мы предоставляем услуги доставки и возможность самовывоза букетов. Чтобы сделать заказ — позвоните или напишите нам!</p>
+            <p><strong>Телефон:</strong> +7 (123) 456–78–90</p>
+            <p><strong>Email:</strong> <a href="mailto:info@flowerfairy.ru">info@flowerfairy.ru</a></p>
+            <p><strong>Адрес:</strong> <a href="https://maps.app.goo.gl/ur8Z5TcC6m82UVTW7" target="_blank">г. Москва, Большая Сухаревская пл., 1/2 С1</a></p>
+        </div>
+    </main>
+</body>
+
+<footer style="background: linear-gradient(to right, #f0e4ff, #e2d1f5); padding: 40px 20px; margin-top: 60px; border-top-left-radius: 30px; border-top-right-radius: 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+        
+        <!-- Контактная информация -->
+        <div style="flex: 1 1 300px;">
+            <h3 style="color: #6a4caf;">Контакты</h3>
+            <p><strong>Адрес:</strong> Большая Сухаревская пл., 1/2 С1, Москва</p>
+            <p><strong>Телефон:</strong> <a href="tel:+79001234567" style="color: #6a4caf; text-decoration: none;">+7 (900) 123-45-67</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@flowerfairy.ru" style="color: #6a4caf; text-decoration: none;">info@flowerfairy.ru</a></p>
+            <p><strong>Время работы:</strong> ежедневно с 9:00 до 21:00</p>
+        </div>
+
+       
+    </div>
+    <p style="text-align: center; margin-top: 30px; color: #8b72c2;">© 2025 FlowerFairy — Все права защищены</p>
+</footer>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .cart-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart-container li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .cart-container img.flower-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 10px;
+        }
+
+        .delete-icon img {
+            width: 20px;
+            height: 20px;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Логотип -->
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+    </div>
+
+    <!-- Иконка корзины -->
+    <div class="cart-icon">
+        <a href="{{ url_for('cart') }}">
+            <img src="{{ url_for('static', filename='images/cart.png') }}" alt="Cart">
+        </a>
+    </div>
+
+    <!-- Навигация -->
+    <nav class="navbar">
+        <a href="{{ url_for('about') }}" class="nav-button {% if request.endpoint == 'about' %}active{% endif %}">О нас</a>
+        <a href="{{ url_for('index') }}" class="nav-button {% if request.endpoint == 'index' %}active{% endif %}">Главная</a>
+        <a href="{{ url_for('contacts') }}" class="nav-button {% if request.endpoint == 'contacts' %}active{% endif %}">Контакты</a>
+    </nav>
+
+    <!-- Контент корзины -->
+    <div class="cart-container">
+        <h2>Ваша корзина</h2>
+        {% if cart %}
+        <ul>
+            {% for item in cart %}
+                <li>
+                    <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}" class="flower-image">
+                    <span>{{ item.name }} — {{ item.price }} ₽</span>
+                    <a href="{{ url_for('remove_from_cart', index=loop.index0) }}" class="delete-icon">
+                        <img src="{{ url_for('static', filename='images/bin.png') }}" alt="Удалить">
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        <p><strong>Итого:</strong> {{ total }} ₽</p>
+        {% else %}
+            <p>Корзина пуста.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

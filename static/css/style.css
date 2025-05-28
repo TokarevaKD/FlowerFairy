@@ -1,0 +1,258 @@
+/* ---------- Общие стили ---------- */
+
+body {
+    background-image: url("../images/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ---------- Логотип ---------- */
+
+.logo {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 0;
+}
+
+.logo img {
+    height: 60px;
+}
+
+/* ----- Иконка корзины ----- */
+
+.cart-icon {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.cart-icon img {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+/*  Навигация  */
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0 40px;
+}
+
+.nav-button {
+    background: linear-gradient(to right, #877ac5, #d189d4);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 24px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.nav-button:hover {
+    transform: scale(1.05);
+}
+
+.nav-button.active {
+    background: #d189d4;
+    font-weight: bold;
+}
+
+/* ---------- Продукты ---------- */
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 220px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 10px;
+    height: 260px;
+    object-fit: cover;
+}
+
+.product-name {
+    margin-top: 12px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.product-price {
+    color: #333;
+    margin-top: 4px;
+    font-weight: bold;
+}
+
+.product-card .nav-button {
+    margin-top: 10px;
+    padding: 6px 14px;
+    font-size: 14px;
+}
+
+/* ---------- О нас ---------- */
+
+.about-section {
+    background-color: rgba(255, 192, 203, 0.85);
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px 60px;
+    border-radius: 30px;
+    text-align: center;
+    color: #000;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.about-section h2 {
+    font-size: 26px;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+.about-section p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.about-section em {
+    font-weight: bold;
+}
+
+/* ---------- Контакты ---------- */
+
+.contacts-card {
+    background: rgba(255, 192, 203, 0.85); 
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 700px;
+    margin: 40px auto;
+    text-align: center;
+    color: #333;
+}
+
+.contacts-card h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #7a5fc0;
+}
+
+.contacts-card p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 12px 0;
+}
+
+.contacts-card a {
+    color: #d172d8;
+    text-decoration: none;
+}
+
+.contacts-card a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Корзина ---------- */
+
+.cart-container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cart-container h2 {
+    text-align: center;
+    color: #7a5fc0;
+    margin-bottom: 30px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cart-item-price {
+    color: #555;
+    margin-top: 5px;
+}
+
+/* ---------- Иконка удаления ---------- */
+
+.delete-icon img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.delete-icon {
+    margin-left: 15px;
+}
+
+
+.delete-btn {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #e04344;
+}
+

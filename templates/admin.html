@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель администратора</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #fdfaff, #f9f0ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(136, 102, 176, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #6a4caf;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e6d4f5;
+        }
+
+        th {
+            background-color: #f3e7ff;
+            color: #6a4caf;
+        }
+
+        tr:hover {
+            background-color: #fef5ff;
+        }
+
+        .logout-btn {
+            display: block;
+            margin: 10px auto;
+            background: linear-gradient(to right, #d189d4, #877ac5);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 16px;
+            border: none;
+            transition: transform 0.2s;
+            width: 250px;
+        }
+
+        .logout-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .delete-btn {
+            background-color: #ff4d4f;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .delete-btn:hover {
+            background-color: #e04344;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Таблица заказов</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Название букета</th>
+                <th>Время доставки</th>
+                <th>Адрес</th>
+                <th>Заказчик</th>
+                <th>Получатель</th>
+                <th>Открытка</th>
+                <th>Создан</th>
+                <th>Действие</th>
+            </tr>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order[0] }}</td>
+                <td>{{ order[1] }}</td>
+                <td>{{ order[2] }}</td>
+                <td>{{ order[3] }}</td>
+                <td>{{ order[4] }}</td>
+                <td>{{ order[5] }}</td>
+                <td>{{ order[6] }}</td>
+                <td>{{ order[7] }}</td>
+                <td>
+                    <form action="{{ url_for('delete_order', order_id=order[0]) }}" method="post" onsubmit="return confirm('Удалить этот заказ?');">
+                        <button type="submit" class="delete-btn">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="button-group">
+            <a href="{{ url_for('index') }}" class="logout-btn">Выйти на сайт</a>
+            <a href="{{ url_for('admin_logout') }}" class="logout-btn">Выйти из кабинета админа</a>
+        </div>
+    </div>
+</body>
+</html>
