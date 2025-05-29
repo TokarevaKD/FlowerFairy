@@ -71,18 +71,60 @@
         Ваш заказ принят! &lt;3
     </div>
 
-    <div id="order-form" style="display: {% if success %}none{% else %}block{% endif %};">
-        <h2 style="text-align: center; color: #6a4caf; font-size: 45px; margin-bottom: 50px;">Форма заказа</h2>
-        <form action="{{ url_for('submit_order') }}" method="post" style="display: flex; flex-direction: column; gap: 15px;">
-            <input type="text" name="bouquet_name" placeholder="Название букета" required>
-            <input type="datetime-local" name="delivery_time" required>
-            <input type="text" name="address" placeholder="Адрес доставки или самовывоз" required>
-            <input type="text" name="sender_name" placeholder="Имя заказчика и контактный номер телефона" required>
-            <input type="text" name="recipient_name" placeholder="Имя получателя и контактный номер телефона" required>
-            <textarea name="card_message" placeholder="Текст для открытки (по желанию)"></textarea>
-            <button type="submit" class="add-to-cart-btn" style="align-self: center; font-size: 18px; padding: 14px 28px;">Оформить заказ</button>
-        </form>
-    </div>
+    <div id="order-form" style="display: {% if success %}none{% else %}block{% endif %}; padding: 20px;">
+    <h2 style="text-align: center; color: #6a4caf; font-size: 32px; margin-bottom: 20px;">Форма заказа</h2>
+
+    <form action="{{ url_for('submit_order') }}" method="post"
+          style="display: flex; flex-direction: column; gap: 12px; max-width: 380px; margin: 0 auto;
+                 background: #fdfbff; padding: 20px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+
+        <div style="display: flex; flex-direction: column;">
+            <label style="font-size: 14px; color: #4a2c91; margin-bottom: 4px; font-weight: 600;">Название букета:</label>
+            <input type="text" name="bouquet_name" placeholder="Например, Ромашковый рай" required
+                   style="padding: 10px; font-size: 14px; border-radius: 6px; border: 1px solid #ccc;">
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+            <label style="font-size: 14px; color: #4a2c91; margin-bottom: 4px; font-weight: 600;">Дата и время доставки:</label>
+            <input type="datetime-local" name="delivery_time" required
+                   style="padding: 10px; font-size: 14px; border-radius: 6px; border: 1px solid #ccc;">
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+            <label style="font-size: 14px; color: #4a2c91; margin-bottom: 4px; font-weight: 600;">Адрес доставки/самовывоз:</label>
+            <input type="text" name="address" placeholder="Адрес или самовывоз" required
+                   style="padding: 10px; font-size: 14px; border-radius: 6px; border: 1px solid #ccc;">
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+            <label style="font-size: 14px; color: #4a2c91; margin-bottom: 4px; font-weight: 600;">Имя заказчика и номер:</label>
+            <input type="text" name="sender_name" placeholder="Имя и номер заказчика" required
+                   style="padding: 10px; font-size: 14px; border-radius: 6px; border: 1px solid #ccc;">
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+            <label style="font-size: 14px; color: #4a2c91; margin-bottom: 4px; font-weight: 600;">Имя получателя и номер:</label>
+            <input type="text" name="recipient_name" placeholder="Имя и номер получателя" required
+                   style="padding: 10px; font-size: 14px; border-radius: 6px; border: 1px solid #ccc;">
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+            <label style="font-size: 14px; color: #4a2c91; margin-bottom: 4px; font-weight: 600;">Текст для открытки:</label>
+            <textarea name="card_message" placeholder="Ваш текст для открытки"
+                      style="padding: 10px; font-size: 14px; height: 60px; border-radius: 6px; border: 1px solid #ccc;"></textarea>
+        </div>
+
+        <button type="submit"
+                style="align-self: center; font-size: 15px; padding: 10px 22px; margin-top: 10px;
+                       background-color: #6a4caf; color: white; border: none; border-radius: 6px; cursor: pointer;">
+            Оформить заказ
+        </button>
+    </form>
+</div>
+
+
+
+
 </section>
 
 {% if success %}
@@ -109,7 +151,7 @@
 
     <!-- Адрес и маршрут -->
     <div style="flex: 1 1 40%; min-width: 280px;margin-top: 100px;">
-        <h2 style="color: #6a4caf;">Наш адрес</h2>
+        <h2 style="color: #6a4caf;">Наш адрес:</h2>
         <p><strong>Большая Сухаревская пл., 1/2 С1, Москва, 129090</strong></p>
 
         <h3 style="margin-top: 70px;">Как добраться до нас</h3>
